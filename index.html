@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>TASK MANAGER</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+
+        <div class="app">
+
+            <h1>TASK MANAGER</h1>
+
+            <!-- form -->
+             <form id="task-form">
+              <input 
+              id="task-input"
+              type="text"
+              placeholder="Enter a task"
+              required
+              />
+              <button type="submit">Add</button>
+             </form>
+
+             <!-- filters -->
+              <div class="filters">
+             <button type="button" data-filter="all">All</button>
+             <button type="button" data-filter="active">Active</button>
+             <button type="button" data-filter="done">Done</button>
+              </div>
+
+
+              <!-- Task List -->
+
+              <ul id="task-list"></ul>
+
+              <!-- count -->
+
+              <p id="task-count"></p>
+        </div>
+
+
+        <script src="script.js"></script>
+
+    </body>
+</html>
