@@ -1,25 +1,29 @@
+// select DOM 
 const form = document.getElementById("task-form");
 const input = document.getElementById("task-input");
 const list = document.getElementById("task-list");
 const countText = document.getElementById("task-count");
-const filterButtons = document.querySelectorAll(".filter-task button");
+const filterButtons = document.querySelectorAll(".filters button");
 
+// state
 let tasks = [];
 let currentFilter = "all";
 
+// events
 form.addEventListener("submit", function (event) {
   event.preventDefault();
 
   if (input.value.trim() === "") return;
-
+// add task 
   const task = {
     id: Date.now(),
     text: input.value,
     completed: false
   };
-
+// update state
   tasks.push(task);
   input.value = "";
+  // render ui
   renderTasks();
 });
 
@@ -29,10 +33,12 @@ filterButtons.forEach(button => {
     renderTasks();
   });
 });
-
+// render function
 function renderTasks() {
+  // clear ui
   list.innerHTML = "";
 
+  // decide data to show
   let filteredTasks = tasks;
 
   if (currentFilter === "active") {
@@ -43,7 +49,11 @@ function renderTasks() {
     filteredTasks = tasks.filter(task => task.completed);
   }
 
+
+  // loop over data
   filteredTasks.forEach(task => {
+  
+    // create ui for one task
     const li = document.createElement("li");
 
     const checkbox = document.createElement("input");
@@ -70,16 +80,18 @@ function renderTasks() {
       renderTasks();
     });
 
+    // append elements
     li.appendChild(checkbox);
     li.appendChild(span);
     li.appendChild(deleteBtn);
 
     list.appendChild(li);
   });
-
+ // update total count
   updateTaskCount();
 }
 
+ // update total function
 function updateTaskCount() {
   const activeCount = tasks.filter(task => !task.completed).length;
   countText.textContent = `${activeCount} tasks left`;
